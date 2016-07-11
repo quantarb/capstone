@@ -4786,7 +4786,7 @@ TkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Implementation:-Training-and-Testing-Data-Split">Implementation: Training and Testing Data Split<a class="anchor-link" href="#Implementation:-Training-and-Testing-Data-Split">&#182;</a></h3><p>We need to split the data into training and testing sets to estimate how our model will perform on new data. This will also check to see if we are overfitting model to the data. An over fitted model will perform well on the training set but poorly on the testing set.  We will use 200 data points for training our model.  Then we will test our models on the remaining data points.</p>
+<h3 id="Implementation:-Training-and-Testing-Data-Split">Implementation: Training and Testing Data Split<a class="anchor-link" href="#Implementation:-Training-and-Testing-Data-Split">&#182;</a></h3><p>We need to split the data into training and testing sets to estimate how our model will perform on new data. This will also check to see if we are over fitting the model to the data. An over fitted model will perform well on the training set, but poorly on the testing set.  We only have 229 data points.  We will use 200 data points for training our model.  Then we will test our models on the remaining 29 data points.  Over 87% percent of the data is used for training and the remaining 13% is used for testing.</p>
 
 </div>
 </div>
@@ -4871,7 +4871,7 @@ Testing set has 29 samples.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Implementation:--Choosing-the-Best-Model">Implementation:  Choosing the Best Model<a class="anchor-link" href="#Implementation:--Choosing-the-Best-Model">&#182;</a></h3><p>We will try various different regression models from Sklearn.  A regression model from each category was selected.  Essemble regressions were not considered due to the limited amount of data that we have.</p>
+<h3 id="Implementation:--Choosing-the-Best-Model">Implementation:  Choosing the Best Model<a class="anchor-link" href="#Implementation:--Choosing-the-Best-Model">&#182;</a></h3><p>We will use a variety of different regression models from scikit-learn.  A regression model from each category was selected.  Ensemble regressions were not considered due to the limited amount of data that we have.  The regression models performed much better after implementing log feature scaling.  Each model was tested with the default parameter first.  We will select the model that has the highest explained variance score.</p>
 
 </div>
 </div>
@@ -4912,7 +4912,7 @@ Testing set has 29 samples.
 Training set size: 200
 Training LinearRegression...
 Done!
-Training time (secs): 0.001
+Training time (secs): 0.002
 Predicting labels using LinearRegression...
 Done!
 Prediction time (secs): 0.000
@@ -4925,10 +4925,10 @@ Performance score for test set: 0.181391879412
 Training set size: 200
 Training KernelRidge...
 Done!
-Training time (secs): 0.005
+Training time (secs): 0.001
 Predicting labels using KernelRidge...
 Done!
-Prediction time (secs): 0.003
+Prediction time (secs): 0.000
 Performance score for training set: 0.0595059934826
 Predicting labels using KernelRidge...
 Done!
@@ -4938,7 +4938,7 @@ Performance score for test set: 0.164951989561
 Training set size: 200
 Training SVR...
 Done!
-Training time (secs): 0.001
+Training time (secs): 0.002
 Predicting labels using SVR...
 Done!
 Prediction time (secs): 0.001
@@ -4951,15 +4951,15 @@ Performance score for test set: 0.00244911471521
 Training set size: 200
 Training SGDRegressor...
 Done!
-Training time (secs): 0.000
+Training time (secs): 0.001
 Predicting labels using SGDRegressor...
 Done!
 Prediction time (secs): 0.000
-Performance score for training set: 0.0506687746253
+Performance score for training set: 0.048080162512
 Predicting labels using SGDRegressor...
 Done!
 Prediction time (secs): 0.000
-Performance score for test set: 0.194378388713
+Performance score for test set: 0.196244392825
 ------------------------------------------
 Training set size: 200
 Training KNeighborsRegressor...
@@ -4984,8 +4984,8 @@ Prediction time (secs): 0.000
 Performance score for training set: 1.0
 Predicting labels using DecisionTreeRegressor...
 Done!
-Prediction time (secs): 0.001
-Performance score for test set: -1.62067707478
+Prediction time (secs): 0.000
+Performance score for test set: -1.82323061907
 </pre>
 </div>
 </div>
@@ -5009,7 +5009,15 @@ Performance score for test set: -1.62067707478
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Implementation:-Model-Tuning">Implementation: Model Tuning<a class="anchor-link" href="#Implementation:-Model-Tuning">&#182;</a></h3><p>We will use fine tune the best our model by using grid search to find the best hyperparameters.  We will search for the optimal number of neighbors</p>
+<h3 id="Implementation:-Model-Tuning">Implementation: Model Tuning<a class="anchor-link" href="#Implementation:-Model-Tuning">&#182;</a></h3><p>We will fine tune our best model by using grid search to find the best hyper parameters.  We will be using the same training and testing dataset as before so we can do a fair comparison.  We will search for the optimal n_neighbors, and optimal weight settings.</p>
+<ul>
+<li>n_neighbors: number of clusters to break the data set into </li>
+<li>weights can be set to uniform or distance <ul>
+<li>Uniform weights. All points in each neighborhood are weighted equally.</li>
+<li>Distance: weight points by the inverse of their distance. Closer data point will have a greater influence than data points which are further away.</li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -5057,14 +5065,14 @@ Performance score for test set: -1.62067707478
 Training set size: 200
 Training GridSearchCV...
 Done!
-Training time (secs): 0.206
+Training time (secs): 0.202
 Predicting labels using GridSearchCV...
 Done!
-Prediction time (secs): 0.001
+Prediction time (secs): 0.000
 Performance score for training set: 0.136420659587
 Predicting labels using GridSearchCV...
 Done!
-Prediction time (secs): 0.001
+Prediction time (secs): 0.000
 Performance score for test set: 0.211756478074
 </pre>
 </div>
@@ -5110,7 +5118,7 @@ Performance score for test set: 0.211756478074
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Observations:">Observations:<a class="anchor-link" href="#Observations:">&#182;</a></h3><p>The optimal n_neighbors was 9 and the optimal settings for weight was uniform.  Unfortunately, our fine-tuned model performed slightly worse than the model with default parameters.  It achieved an explained variance score of 0.2117 which is less than our original score of 0.2401.  An optimal model is not necessarily a robust model. Sometimes, a model is either too complex or too simple to sufficiently generalize to new data.</p>
+<h3 id="Observations:">Observations:<a class="anchor-link" href="#Observations:">&#182;</a></h3><p>The optimal n_neighbors was 9 and the optimal weight settings was uniform. Unfortunately, our fine-tuned model performed slightly worse than the model with default parameters. It achieved an explained variance score of 0.2117 which is less than our original score of 0.2401. An optimal model is not necessarily a robust model. Sometimes, a model is either too complex or too simple to sufficiently generalize to new data.  Nonetheless, both the default parameter and optimized model achieved an explained variance score which is greater than our initial target of 0.10.  The model has reached our targeted threshold.</p>
 
 </div>
 </div>
@@ -5120,7 +5128,7 @@ Performance score for test set: 0.211756478074
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Predicting-Selling-Prices">Predicting Selling Prices<a class="anchor-link" href="#Predicting-Selling-Prices">&#182;</a></h3><p>We are trying to use the fine-tuned model to predict how much room my friend has to negotiate the sales price of the home.  The house had 4 bedrooms, 2.5 baths, 7 rooms, and is 2,088 fin sf in size.  The home was listed for $195,000 and had been on the market for 43 days.  We need to transform our input by applying the natural logarithm.</p>
+<h3 id="Predicting-Selling-Prices">Predicting Selling Prices<a class="anchor-link" href="#Predicting-Selling-Prices">&#182;</a></h3><p>We are trying to use the fine-tuned model to predict how much room my friend has to negotiate the sales price of the home.  The house had 4 bedrooms, 2.5 baths, 7 rooms, and is 2,088 fin sf in size.  The home was listed for 195,000 and had been on the market for 43 days.  We need to transform our input by applying the natural logarithm.</p>
 
 </div>
 </div>
@@ -5169,7 +5177,7 @@ Performance score for test set: 0.211756478074
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Observations:">Observations:<a class="anchor-link" href="#Observations:">&#182;</a></h4><p>The model predicts that my friend has about $3305 to work with.  It suggests that she should place an offer for that home at $191,695.</p>
+<h4 id="Observations:">Observations:<a class="anchor-link" href="#Observations:">&#182;</a></h4><p>The model predicts that my friend has about 3305 to work with.  It suggests that she should place an offer for that home at 191,695.</p>
 
 </div>
 </div>
@@ -5180,6 +5188,179 @@ Performance score for test set: 0.211756478074
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Free-Form-Visualization">Free Form Visualization<a class="anchor-link" href="#Free-Form-Visualization">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">errors</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">-</span> <span class="n">grid</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">errors</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_text output_subarea ">
+<pre>count       29.000000
+mean     -1283.084291
+std       5175.396490
+min     -13076.666667
+25%      -4294.444444
+50%      -1211.111111
+75%       1111.111111
+max      12755.555556
+Name: Target, dtype: float64</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+YII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Observations:
+We can compute the errors as the actual values minus the predicted values. The average prediction is off by -1283 from the actual value. The standard deviation of 5175 is very high as it is over four times greater than the mean.  The good news is that only few values that are more than one standard deviation away from the mean.</p>
+
 </div>
 </div>
 </div>
